@@ -121,6 +121,10 @@ this.makeHtml = function(text) {
     g_titles = new Array();
     g_html_blocks = new Array();
 
+    /* Substitute ``proper quotes'' */
+    text = text.replace(/``/g, "“");
+    text = text.replace(/''/g, "”");
+
     // attacklab: Replace ~ with ~T
     // This lets us use tilde as an escape char to avoid md5 hashes
     // The choice of character is arbitray; anything that isn't
