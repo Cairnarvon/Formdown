@@ -1384,6 +1384,7 @@ sheet.innerHTML = "\
 .response-content ol, .response-content ul {margin: 1.12em 0 1.12em 40px} \
 .response-content ol li {list-style-type: decimal} \
 .response-content ul li {list-style-type: disc} \
+.response-content img {max-width: 100%} \
 ";
 document.body.appendChild(sheet);
 
