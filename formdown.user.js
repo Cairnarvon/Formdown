@@ -1345,11 +1345,21 @@ sheet.innerHTML = "\
 document.body.appendChild(sheet);
 
 var converter = new Showdown.converter();
-var replies = document.getElementsByClassName("response-content");
-for (var i = 0; i < replies.length; ++i) {
-    var reply = replies[i].getElementsByTagName("p")[0];
-    reply.innerHTML = reply.innerHTML.replace(/<a href="(.*?)" .*?>\1<\/a>/g,
-                                              "$1");
-    reply.innerHTML = reply.innerHTML.replace(/<br>/g, "");
-    reply.innerHTML = converter.makeHtml(reply.innerHTML);
+
+function md_do() {
+    document.removeEventListener("DOMNodeInserted", md_do, false);
+
+    var replies = document.getElementsByClassName("response-content");
+    for (var i = 0; i < replies.length; ++i) {
+        var reply = replies[i].getElementsByTagName("p")[0];
+        reply.innerHTML = reply.innerHTML.replace(/<a href="(.*?)" .*?>\1<\/a>/g,
+                                                  "$1");
+        reply.innerHTML = reply.innerHTML.replace(/<br>/g, "");
+        reply.innerHTML = converter.makeHtml(reply.innerHTML);
+    }
+
+    document.addEventListener("DOMNodeInserted", md_do, false);
 }
+
+md_do();
+document.addEventListener("DOMNodeInserted", md_do, false);
