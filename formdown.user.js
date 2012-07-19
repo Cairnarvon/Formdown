@@ -1352,10 +1352,15 @@ function md_do() {
     var replies = document.getElementsByClassName("response-content");
     for (var i = 0; i < replies.length; ++i) {
         var reply = replies[i].getElementsByTagName("p")[0];
+
+        if (reply.getAttribute("md"))
+            continue;
+
         reply.innerHTML = reply.innerHTML.replace(/<a href="(.*?)" .*?>\1<\/a>/g,
                                                   "$1");
         reply.innerHTML = reply.innerHTML.replace(/<br>/g, "");
         reply.innerHTML = converter.makeHtml(reply.innerHTML);
+        reply.setAttribute("md", "1");
     }
 
     document.addEventListener("DOMNodeInserted", md_do, false);
