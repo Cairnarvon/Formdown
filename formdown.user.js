@@ -1038,14 +1038,14 @@ var _DoBlockQuotes = function(text) {
         /gm, function(){...});
     */
 
-    text = text.replace(/((^[ \t]*>[ \t]?.+\n(.+\n)*\n*)+)/gm,
+    text = text.replace(/((^[ \t]*&gt;[ \t]?.+\n(.+\n)*\n*)+)/gm,
         function(wholeMatch,m1) {
             var bq = m1;
 
             // attacklab: hack around Konqueror 3.5.4 bug:
             // "----------bug".replace(/^-/g,"") == "bug"
 
-            bq = bq.replace(/^[ \t]*>[ \t]?/gm,"~0");   // trim one level of quoting
+            bq = bq.replace(/^[ \t]*&gt;[ \t]?/gm,"~0");   // trim one level of quoting
 
             // attacklab: clean up hack
             bq = bq.replace(/~0/g,"");
@@ -1341,6 +1341,11 @@ sheet.innerHTML = "\
 .response-content ol li {list-style-type: decimal} \
 .response-content ul li {list-style-type: disc} \
 .response-content img {max-width: 100%} \
+.response-content blockquote { \
+    margin: 1.12em; \
+    padding: 0 1.12em; \
+    border-left: 8px solid #f2f2f2; \
+} \
 ";
 document.body.appendChild(sheet);
 
