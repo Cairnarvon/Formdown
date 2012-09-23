@@ -1031,14 +1031,13 @@ var _DoBlockQuotes = function(text) {
             (
                 ^[ \t]*>[ \t]?          // '>' at the start of a line
                 .+\n                    // rest of the first line
-                (.+\n)*                 // subsequent consecutive lines
                 \n*                     // blanks
             )+
         )
         /gm, function(){...});
     */
 
-    text = text.replace(/((^[ \t]*&gt;[ \t]?.+\n(.+\n)*\n*)+)/gm,
+    text = text.replace(/((^[ \t]*&gt;[ \t]?.+\n\n*)+)/gm,
         function(wholeMatch,m1) {
             var bq = m1;
 
